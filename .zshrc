@@ -1,4 +1,5 @@
 export ZSH=$HOME/.oh-my-zsh
+export XDG_CONFIG_HOME=$HOME/.config/
 
 plugins=(
   git
@@ -31,8 +32,6 @@ autoload -U +X bashcompinit && bashcompinit
 
 complete -o nospace -C /usr/local/bin/terraform terraform
 
-export HOMEBREW_NO_AUTO_UPDATE=1
-
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
@@ -49,3 +48,13 @@ alias dkimg='docker image ls --format $DOCKER_IMAGE_FORMAT'
 alias dknlist='docker node list --format $DOCKER_NODE_FORMAT'
 alias dksps='docker service ps --format $DOCKER_SERVICE_PS_FORMAT'
 alias dksls='docker service ls --format $DOCKER_SERVICE_LS_FORMAT'
+
+alias pip='pip3'
+export PATH="${PATH}:${HOME}/.local/bin/"
+
+export PATH="${PATH}:${HOME}/Library/Python/3.9/bin/"
+
+alias wallshuf=$HOME/.local/scripts/wallpaper-switcher.sh
+(cat ~/.cache/wal/sequences &)
+
+neofetch

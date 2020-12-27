@@ -1,6 +1,13 @@
 "Basics
-syntax on
 set number relativenumber 
+set nocompatible
+filetype plugin indent on
+syntax on
+set hidden
+
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+
+let mapleader=","
 
 "PLugin manager and plugins
 call plug#begin()
@@ -8,11 +15,9 @@ Plug 'scrooloose/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 Plug 'hashivim/vim-terraform'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'dracula/vim', { 'name': 'dracula' }
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'preservim/nerdcommenter'
-Plug 'chrisbra/csv.vim'
-
+Plug 'dylanaraps/wal'
 let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-snippets', 'coc-vimlsp', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-yank', 'coc-prettier']
 
 let g:syntastic_python_python_exec = '/usr/local/bin/python3'
@@ -40,8 +45,12 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 nnoremap <silent> <C-e> :NERDTreeToggle<CR>
 
 
-colorscheme dracula
+autocmd FileType python map <buffer> <F3> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+autocmd FileType python imap <buffer> <F3> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
 
+let g:gruvbox_contrast_dark = 'hard'
+
+colorscheme wal 
 
 source $HOME/.config/nvim/plug-config/coc.vim 
 
