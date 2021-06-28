@@ -4,6 +4,8 @@ set nocompatible
 filetype plugin indent on
 syntax on
 set hidden
+set statusline+=%F
+
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
@@ -12,7 +14,9 @@ let mapleader=","
 "PLugin manager and plugins
 call plug#begin()
 Plug 'scrooloose/nerdtree'
+Plug 'pearofducks/ansible-vim'
 Plug 'ryanoasis/vim-devicons'
+Plug 'junegunn/goyo.vim'
 Plug 'hashivim/vim-terraform'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ekalinin/Dockerfile.vim'
@@ -20,6 +24,8 @@ Plug 'preservim/nerdcommenter'
 Plug 'dylanaraps/wal'
 Plug 'lervag/vimtex'
 Plug 'morhetz/gruvbox'
+Plug 'mrk21/yaml-vim'
+Plug 'mattn/emmet-vim'
 let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-snippets', 'coc-vimlsp', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-yank', 'coc-prettier']
 
 let g:syntastic_python_python_exec = '/usr/local/bin/python3'
@@ -34,6 +40,11 @@ call plug#end()
 
 au BufNewFile,BufRead *.ts setlocal filetype=typescript
 au BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
+
+
+" add yaml stuffs
+au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 
 "NERDTree config
@@ -52,8 +63,8 @@ autocmd FileType python imap <buffer> <F3> <esc>:w<CR>:exec '!python3' shellesca
 
 let g:gruvbox_contrast_dark = 'hard'
 
-colorscheme wal
-" colorscheme gruvbox
+" colorscheme wal
+colorscheme gruvbox
 
 source $HOME/.config/nvim/plug-config/coc.vim 
 

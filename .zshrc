@@ -20,6 +20,9 @@ fi
 if type gmake > /dev/null 2>&1; then
   alias make='gmake'
 fi
+if type gsed > /dev/null 2>&1; then
+  alias sed='gsed'
+fi
 
 
 #load pure theme
@@ -51,10 +54,36 @@ alias dksls='docker service ls --format $DOCKER_SERVICE_LS_FORMAT'
 
 alias pip='pip3'
 export PATH="${PATH}:${HOME}/.local/bin/"
-
 export PATH="${PATH}:${HOME}/Library/Python/3.9/bin/"
+export PATH="${PATH}:${HOME}/.bin/"
 
 alias wallshuf=$HOME/.local/scripts/wallpaper-switcher.sh
 (cat ~/.cache/wal/sequences &)
+source ~/.cache/wal/colors-tty.sh
+# export HISTIGNORE='*sudo -S*:*docker login*'
+setopt HIST_IGNORE_SPACE
+# export HOMEBREW_NO_AUTO_UPDATE=1
 
-neofetch
+alias rmwall=$HOME/.local/scripts/wallpaper-remove.sh
+alias c="highlight -O ansi --force"
+alias vnote="vim +Goyo"
+alias pcreate=". pcreate"
+alias sup="brew update -v && brew upgrade -v && brew upgrade --cask -v"
+alias glow="glow -p"
+
+mysql() {
+	if [[ $@ == "start" ]]; then
+		command brew services start mysql
+	elif
+		[[ $@ == "stop" ]]; then
+		command brew services stop mysql
+	elif
+		[[ $@ == "restart" ]]; then
+		command brew services restart mysql
+	else
+		command mysql $@
+	fi
+}
+
+autoload -Uz hello_world
+bindkey -v
